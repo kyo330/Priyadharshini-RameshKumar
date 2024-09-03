@@ -1,368 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramyaa Prasath's Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: "Poppins", sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #D8E2DC; /* Background color from the palette */
-            color: #9D8189; /* Dark pink text */
-        }
-
-        header {
-            background-color: #FFCAD4; /* Light pink background from the palette */
-            padding: 1rem 2rem; /* Add padding to the header */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        .scroll-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background-color: #F4ACB7;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 3rem;
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: none; /* Initially hidden */
-            font-weight: bold; /* Make the arrow icon bold */
-            font-size: 1.5rem; /* Make the arrow icon thicker */
-        }
-
-        .name {
-            color: #9D8189; /* Dark pink color */
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 1rem 4rem; /* Increase padding to push navigation links more inside */
-            display: flex;
-            gap: 1rem;
-            margin: 0;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #F4ACB7; /* Pink color from the palette */
-            font-weight: bold;
-        }
-
-        main {
-            padding: 6rem 2rem 2rem 2rem; /* Adjust padding to account for fixed header */
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        section {
-            margin-bottom: 2rem;
-            background-color: #FFFFFF; /* Section background color from the palette */
-            padding: 2rem;
-            border-radius: 10px;
-        }
-
-        h1 {
-            color: #F4ACB7; /* Header color from the palette */
-            text-align: center;
-        }
-
-        h2 {
-            color: #F4ACB7; /* Different color for section headings */
-        }
-
-        footer {
-            background-color: #FFCAD4;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-        }
-
-        .project-card {
-            background-color: #D8E2DC;
-            padding: 1rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .links {
-            margin-top: auto;
-            padding-top: 1rem;
-        }
-
-        .button {
-            display: inline-block;
-            margin: 0.5rem 0;
-            padding: 0.5rem 1rem;
-            background-color: #F4ACB7;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .contact-info, .links {
-            text-align: center;
-        }
-
-        .links a {
-            display: inline-block;
-            margin: 0.5rem;
-            padding: 0.5rem 1rem;
-            background-color: #F4ACB7;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .experience-item, .education-item {
-            margin-bottom: 1rem;
-        }
-
-        .experience-item h3, .education-item h3 {
-            margin: 0;
-        }
-
-        .experience-item p, .education-item p {
-            margin: 0.5rem 0;
-        }
-
-        .date {
-            font-style: italic;
-            color: #888;
-        }
-
-        .scroll-to-top.show {
-            display: flex; /* Show when scrolled down */
-        }
-
-        .contact-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .contact-button {
-            display: flex;
-            align-items: center;
-            padding: 0.5rem 1rem;
-            background-color: #F4ACB7;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .contact-icon {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-
-        .project-cards {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px; /* Adjust the gap between cards as needed */
-        }
-    
-        .card {
-            flex: 1 1 calc(33.333% - 16px); /* Adjust the percentage to control the number of cards per row */
-            box-sizing: border-box;
-            padding: 16px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            background-color: #fff;
-            transition: transform 0.3s;
-        }
-    
-        .card:hover {
-            transform: scale(1.05);
-        }
-    
-        @media (max-width: 768px) {
-            .card {
-                flex: 1 1 calc(50% - 16px); /* Two cards per row on medium screens */
-            }
-        }
-    
-        @media (max-width: 480px) {
-            .card {
-                flex: 1 1 100%; /* One card per row on small screens */
-            }
-        }
-    </style>
-    <link rel="icon" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priyadharshini Ramesh Kumar's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Poppins", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F4F3EE; /* Light Cream background */
+            background-image: linear-gradient(#E0AFA0 1px, transparent 1px),
+                              linear-gradient(90deg, #E0AFA0 1px, transparent 1px); /* Grid pattern using E0AFA0 */
+            background-size: 20px 20px;
+            color: #463F3A; /* Dark Brown text color */
+        }
+    
+        header {
+            background-color: #E0AFA0; /* Light Terracotta background for header */
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+    
+        .name {
+            color: #463F3A; /* Dark Brown color for name */
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+    
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 1rem;
+            margin: 0;
+        }
+    
+        nav a {
+            text-decoration: none;
+            color: #463F3A; /* Dark Brown color for links */
+            font-weight: bold;
+        }
+    
+        main {
+            padding: 6rem 2rem 2rem 2rem; /* Adjust padding to account for fixed header */
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    
+        section {
+            margin-bottom: 2rem;
+            background-color: #FFFFFF; /* White section background color */
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        h1, h2, h3 {
+            color: #463F3A; /* Dark Brown for headings */
+        }
+    
+        p, li {
+            color: #8A817C; /* Muted Brown for text */
+        }
+    
+        .date {
+            font-style: italic;
+            color: #ABA59C; /* Updated soft Gray-Brown for dates */
+        }
+    
+        footer {
+            background-color: #E0AFA0; /* Light Terracotta background for footer */
+            text-align: center;
+            padding: 1rem;
+            color: #463F3A; /* Dark Brown color for footer text */
+        }
+    
+        .experience-item, .education-item {
+            margin-bottom: 1rem;
+        }
+    
+        .contact-info, .links {
+            text-align: center;
+        }
+    
+        .links a {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            background-color: #8A817C; /* Muted Brown background for buttons */
+            color: #FFFFFF; /* White text for buttons */
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+    
+        .project-card {
+            background-color: #FFFFFF;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        .contact-button {
+            background-color: #8A817C; /* Muted Brown background for contact buttons */
+            color: #FFFFFF; /* White text for contact buttons */
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+    
+    
+    
 </head>
 <body>
-    <header>
-        <div class="name">Ramyaa Prasath</div>
-        <nav>
-          <ul>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#skill">Skill</a></li>
-            <li><a href="#project">Project</a></li>
-            <li><a href="#leadership">Leadership</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="home" class="container">
-            <h1>Ramyaa Prasath</h1>
-            <div class="contact-info">
-                <p style="text-align: left;">Hi there! I'm a passionate Master's student at NYU, diving deep into the world of Computer Science. I love turning complex problems into simple, beautiful solutions. When I'm not coding, you can find me exploring new coffee shops, sketching, or binge-watching my favorite anime. Let's create something amazing together!</p>
-            </div>
-            <div class="links">
-                <a href="https://linkedin.com/in/ramyaaprasath">LinkedIn</a>
-                <a href="https://github.com/ramyaaprasath">GitHub</a>
-                <a href="https://figma.com/@ramyaaprasath">Figma</a>
-                <a href="https://drive.google.com/drive/u/1/folders/1Cft1Y8WwNhIU5-F-Mg7JzR7YpB8TAPAa" class="contact-button">Resume</a>
-            </div>
-        </section>
-        <section id="experience" class="container">
-            <h2>Work Experience</h2>
-            <div class="experience-item">
-                <h3>Arista Networks - Summer Intern (Advanced Service Engineering)</h3>
-                <p class="date">May 2024 - Aug 2024</p>
-                <ul>
-                    <li>Built custom AQL (Advanced Query Language) dashboards for CVX/MCS devices within Arista’s CloudVision Portal, tailored for large-scale client environments.</li>
-                    <li>Delivered critical insights into client connections and trends over time, enhancing data monitoring and efficiency, and supporting more informed decision-making.</li>
-                </ul>
-            </div>
-            <div class="experience-item">
-                <h3>Adobe - Product Intern (Cloud Technology)</h3>
-                <p class="date">May 2022 - Aug 2022</p>
-                <ul>
-                    <li>Automated Unit and Integration testing for a Spring Boot application, reducing testing time by 25% and improving software quality with a 15% reduction in post-release defects.</li>
-                    <li>Developed a tailored testing framework, improving accessibility for Business Analysts and Developers and enhancing overall testing speed by 30%.</li>
-                    <li>Devised and implemented automated test cases and plans, significantly reducing testing time and optimizing company resources.</li>
-                </ul>
-            </div>
-        </section>
-        <section id="education" class="container">
-            <h2>Education</h2>
-            <div class="education-item">
-                <h3>Master of Science in Computer Science - New York University</h3>
-                <p class="date">Aug 2023 - Dec 2024</p>
-                <p>Coursework: Artificial Intelligence, Information Visualization, Design and Analysis of Algorithms, Java</p>
-                <p>GPA: 3.78 / 4.0 • Involvement: Womentorship Program, Girls Who Code</p>
-            </div>
-            <div class="education-item">
-                <h3>Bachelor of Engineering in Computer Science - Anna University</h3>
-                <p class="date">Aug 2019 - July 2023</p>
-                <p>Coursework: Machine Learning, Image Processing, Unix Internals, DBMS, Compiler Design, Cloud Computing, Software Project Management, Internet of Things, Software Engineering</p>
-                <p>GPA: 9.27 / 10 • Involvement: Computer Society of MIT</p>
-            </div>
-        </section>
-        <section id="skills" class="container">
-            <h2>Skills</h2>
-            <h3>Languages</h3>
-            <p>Python, C++, Java, MySQL, MongoDB</p>
-            <h3>Tools</h3>
-            <p>Figma, Adobe XD, Git, GitHub, VS Code, Eclipse, Jira</p>
-        </section>
-        <section id="projects" class="container">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Revamping Hyperspectral Image Security using LAB color space Encryption</h3>
-                    <p>Proposed an innovative encryption algorithm for securing Hyperspectral images in the CIELAB color space.</p>
-                    <p>Employed advanced techniques to bolster data security and confidentiality by around 18%.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Secure Smart Cabin Using Arduino GSM Interface</h3>
-                    <p>Engineered an IoT-based office monitoring system using Arduino GSM interface and built a custom dashboard for real-time data analysis and insights, enhancing security and efficiency.</p>
-                </div>
-                <div class="project-card">
-                    <h3>Data Visualizer</h3>
-                    <p>Designed a bespoke Java software tool to interpret XML data facilitating more informed decision-making.</p>
-                    <p class="links"><a href="https://github.com/ramyaaprasath/Data-Visualizer" class="button">GitHub Repository</a></p>
-                </div>
-                <div class="project-card">
-                    <h3>OnePiece Visualization</h3>
-                    <p>Developed a comprehensive visualization tool for the OnePiece manga series using D3.js. The project includes interactive charts and graphs to analyze character appearances, story arcs, and more.</p>
-                    <p class="links"><a href="https://github.com/ramyaaprasath/OnePiece-Visualization" class="button">GitHub Repository</a></p>
-                </div>
-                <div class="project-card">
-                    <h3>Chat Application</h3>
-                    <p>Created a real-time chat application using Node.js, Express, and Socket.io. The application supports multiple chat rooms, private messaging, and user authentication.</p>
-                    <p class="links"><a href="https://github.com/ramyaaprasath/Chat-Application" class="button">GitHub Repository</a></p>
-                </div>
-                <div class="project-card">
-                    <h3>Cryptarithmetic Problem Solver</h3>
-                    <p>Developed an algorithm to solve cryptarithmetic problems using backtracking and constraint satisfaction techniques.</p>
-                    <p class="links"><a href="https://github.com/ramyaaprasath/Cryptarithmetic-Problem" class="button">GitHub Repository</a></p>
-                </div>
-            </div>
-        </section>
-        <section id="leadership" class="container">
-            <h2>Leadership</h2>
-            <p><strong>Computer Society of MIT - Head of Design and Media</strong> (May 2022 - Mar 2023)</p>
-        </section>
-        <section id="contact" class="container">
-            <h2>Contact</h2>
-            <p>If you would like to get in touch, feel free to reach out through any of the following methods:</p>
-            <div class="contact-links">
-                <a href="tel:+19179406958" class="contact-button">
-                    <i class="fas fa-phone contact-icon"></i> Call
-                </a>
-                <a href="mailto:ramyaaprasath13@gmail.com" class="contact-button">
-                    <i class="fas fa-envelope contact-icon"></i> Email
-                </a>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Ramyaa Prasath</p>
-    </footer>
-    <button class="scroll-to-top" id="scrollToTopBtn" title="Go to top">↑</button>
-    <script>
-        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.add('show');
-            } else {
-                scrollToTopBtn.classList.remove('show');
-            }
-        });
-
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
+    <header>
+        <div class="name">Priyadharshini Ramesh Kumar</div>
+        <nav>
+          <ul>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home" class="container">
+            <h1>Priyadharshini Ramesh Kumar</h1>
+            <div class="contact-info">
+                <p>Passionate Data Scientist with expertise in machine learning, statistical analysis, and programming, currently pursuing an M.S. in Data Science at Texas A&M University.</p>
+            </div>
+            <div class="links">
+                <a href="https://linkedin.com/in/priyadharshini-r330">LinkedIn</a>
+                <a href="https://github.com/kyo330">GitHub</a>
+            </div>
+        </section>
+        <section id="experience" class="container">
+            <h2>Work Experience</h2>
+            <div class="experience-item">
+                <h3>Research Assistant, Bayesian Risk Assessment and Management of Supply Chains</h3>
+                <p class="date">Feb 2024 – Apr 2024</p>
+                <ul>
+                    <li>Contributed to data discovery and exploration using Python and R, improving risk models by 20%.</li>
+                    <li>Collaborated with a multidisciplinary team to enhance data collection and quality assurance processes.</li>
+                </ul>
+            </div>
+            <div class="experience-item">
+                <h3>Research Assistant, TIH-IoT CHANAKYA Fellowship, IIT Bombay</h3>
+                <p class="date">Jan 2022 – Nov 2022</p>
+                <ul>
+                    <li>Engineered a deep learning model for recognizing scientific hand signs with 92% accuracy using Keras.</li>
+                    <li>Part of the dataset creation team, creating a dataset of 10,000 annotated images.</li>
+                </ul>
+            </div>
+        </section>
+        <section id="education" class="container">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>Master of Science in Data Science, Texas A&M University</h3>
+                <p class="date">Aug 2023 – Dec 2024</p>
+                <p>GPA: 3.86/4.0</p>
+                <p>Coursework: Data Mining, Statistical Computing, Artificial Intelligence</p>
+            </div>
+            <div class="education-item">
+                <h3>Bachelor of Engineering in Computer Science, Anna University</h3>
+                <p class="date">Aug 2019 – Jun 2023</p>
+                <p>GPA: 8.78/10.0</p>
+                <p>Coursework: Machine Learning, Cloud Computing, Big Data Analysis</p>
+            </div>
+        </section>
+        <section id="skills" class="container">
+            <h2>Skills</h2>
+            <h3>Programming Languages</h3>
+            <p>Python, R, Java, SQL, C++, HTML/CSS</p>
+            <h3>Tools & Frameworks</h3>
+            <p>TensorFlow, Keras, Git, Jupyter Notebooks, Scikit-Learn, Pandas, Matplotlib</p>
+        </section>
+        <section id="projects" class="container">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>4D Visualizations of Thunderstorm</h3>
+                    <p>Developed real-time storm development displays using Python libraries, improving data visualization.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Air Pollutant Correlation</h3>
+                    <p>Led a team to build machine learning models, predicting pollutant concentrations with R2 = 0.87.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Blockchain and IoT SCM Integration</h3>
+                    <p>Explored real-time tracking with IoT sensors, ensuring data integrity using blockchain.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Revamping Hyperspectral Image Security</h3>
+                    <p>Implemented encryption for hyperspectral imaging data, achieving 97% proximity to desired standards.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Car Resale Value Predictor</h3>
+                    <p>Developed a regression model for used car resale values, aiding clients in pricing strategies.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Secure Smart Cabin Using Arduino</h3>
+                    <p>Designed an IoT-based smart cabin, increasing efficiency by 30% and reducing energy use.</p>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="container">
+            <h2>Contact</h2>
+            <p>If you would like to get in touch, feel free to reach out through any of the following methods:</p>
+            <div class="contact-links">
+                <a href="tel:+19792182333" class="contact-button">Call</a>
+                <a href="mailto:priyadharshini_r@tamu.edu" class="contact-button">Email</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Priyadharshini Ramesh Kumar</p>
+    </footer>
 </body>
 </html>
